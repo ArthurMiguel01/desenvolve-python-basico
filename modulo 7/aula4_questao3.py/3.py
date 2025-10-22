@@ -1,0 +1,11 @@
+with open("estomago.txt", "r", encoding="utf-8") as f:
+    linhas = f.readlines()
+print("Primeiras 25 linhas:")
+print("".join(linhas[:25]))
+print("Número de linhas:", len(linhas))
+maior_linha = max(linhas, key=lambda x: len(x))
+print("Linha com maior número de caracteres:", maior_linha.strip())
+nonato_count = sum(1 for l in linhas for w in l.lower().split() if w.strip(".,!?") == "nonato")
+iria_count = sum(1 for l in linhas for w in l.lower().split() if w.strip(".,!?") == "íria")
+print("Menções Nonato:", nonato_count)
+print("Menções Íria:", iria_count)
