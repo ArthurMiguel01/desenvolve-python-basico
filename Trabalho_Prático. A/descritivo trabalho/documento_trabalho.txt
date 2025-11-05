@@ -1,0 +1,111 @@
+# Documento Descritivo – Sistema de Gestão
+
+## Introdução
+
+A empresa modelada neste trabalho é uma pequena loja de comércio eletrônico fictícia chamada **LojaTech**. A empresa vende produtos tecnológicos como mouses, teclados, fones e acessórios em geral.
+
+O sistema desenvolvido é utilizado por dois tipos de usuários:
+
+* **Administrador**: possui acesso total ao sistema, podendo cadastrar, visualizar, atualizar e excluir usuários e produtos.
+* **Cliente**: possui acesso limitado, podendo atualizar apenas seu próprio cadastro e visualizar informações dos produtos.
+
+O objetivo do sistema é gerenciar usuários e produtos armazenando seus dados em arquivo, possibilitando que a administração e clientes utilizem o sistema de forma prática.
+
+---
+
+## Implementação
+
+### 1) Usuários
+
+#### Estrutura de dados
+
+Para os usuários, utilizou-se um dicionário onde:
+
+* A **chave** é o login do usuário.
+* O **valor** é uma `namedtuple` contendo login, senha e tipo.
+
+Exemplo:
+
+```
+Usuario(login, senha, tipo)
+```
+
+#### Estrutura do arquivo de registro
+
+O arquivo de registro dos usuários é o `usuarios.txt`, estruturado em CSV:
+
+```
+login,senha,tipo
+```
+
+Exemplo real:
+
+```
+admin,000,admin
+camila,999,cliente
+```
+
+#### Funcionalidades (CRUD)
+
+| Funcionalidade            | Descrição                                      | Letra CRUD |
+| ------------------------- | ---------------------------------------------- | ---------- |
+| Cadastro de novo usuário  | Admin registra novos usuários                  | Create     |
+| Login e leitura dos dados | Abertura do arquivo e armazenamento em memória | Read       |
+| Atualizar senha           | Modifica senha do usuário                      | Update     |
+| Excluir usuário           | Remove usuário do registro                     | Delete     |
+
+---
+
+### 2) Produtos
+
+#### Estrutura de dados
+
+Produtos são carregados como lista de dicionários.
+
+```
+{
+    "codigo": "001",
+    "nome": "Mouse Gamer",
+    "preco": 150.00,
+    "quantidade": 10
+}
+```
+
+#### Estrutura do arquivo de registro
+
+O arquivo `produtos.txt` segue o formato CSV:
+
+```
+codigo,nome,preco,quantidade
+```
+
+Exemplo:
+
+```
+001,Mouse Gamer,150.00,10
+```
+
+#### Funcionalidades (CRUD)
+
+| Funcionalidade                           | Descrição                          | Letra CRUD |
+| ---------------------------------------- | ---------------------------------- | ---------- |
+| Cadastrar produto                        | Novo item é adicionado ao arquivo  | Create     |
+| Listar produtos e buscar por código/nome | Leitura dos registros              | Read       |
+| Atualizar produto                        | Admin altera preço/quantidade      | Update     |
+| Excluir produto                          | Remove produto do arquivo          | Delete     |
+| Imprimir por nome                        | Produtos ordenados alfabeticamente | Read       |
+| Imprimir por preço                       | Produtos ordenados por valor       | Read       |
+
+---
+
+## Conclusão
+
+O sistema proposto cumpre os requisitos solicitados: possui funcionalidades CRUD tanto para usuários quanto para produtos, estrutura de arquivos para armazenamento, e controle de acesso com diferentes permissões.
+
+Durante o desenvolvimento, a principal dificuldade foi estruturar o fluxo de login junto ao CRUD, assegurando que permissões fossem respeitadas. Como ponto positivo, o uso de `namedtuple` e dicionários deixou o código organizado e facilitou o uso em memória.
+
+Se fosse expandido futuramente, o sistema poderia ser dividido em múltiplos arquivos, incluir interface visual e integração com banco de dados para maior robustez.
+
+---
+
+**Fim do Documento**
